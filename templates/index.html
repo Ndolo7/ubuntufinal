@@ -1,0 +1,505 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+      {% load static %}
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - Impact Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+<link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+<link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+<link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+
+        <link  href="{% static "assets/css/main.css" %}" rel="stylesheet">
+
+
+
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header fixed-top">
+
+    <div class="topbar d-flex align-items-center">
+      <div class="container d-flex justify-content-center justify-content-md-between">
+        <div class="contact-info d-flex align-items-center">
+          <i class="bi bi-envelope d-flex align-items-center"><a href="lwsopiyo@gmail.com">lwsopiyo@gmail.com</a></i>
+          <i class="bi bi-phone d-flex align-items-center ms-4"><span>+254791432648</span></i>
+        </div>
+        <div class="social-links d-none d-md-flex align-items-center">
+          <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div><!-- End Top Bar -->
+
+    <div class="branding d-flex align-items-cente">
+
+      <div class="container position-relative d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center">
+          <!-- image logo-->
+
+          <img  src="{% static "assets/img/logo.png" %}" alt="">
+
+
+
+
+
+          <h1 class="sitename">Ubuntufund</h1>
+
+          <span>. </span>
+
+        </a>
+          <div>
+
+
+              <button class="btn btn-outline-warning">Fundraise</a>
+              <button class="btn btn-outline-warning">Aim</a>
+              <button class="btn btn-outline-warning">login</a>
+
+          </div>
+
+         <nav id="navmenu" class="navmenu">
+  <ul>
+    <li><a href="{% url 'index' %}" class="active" >Home</a></li>
+    <li><a href="{% url 'About' %}" >About</a></li>
+    <li><a href="{% url 'contacts' %}">Contacts</a></li>
+    <li><a href="{% url 'FAQS' %}">FAQS</a></li>
+    <li><a href="{% url 'Team' %}">Our team</a></li>
+    <li><a href="{% url 'blog' %}">Blog</a></li>
+    <li><a href="{% url 'Kaduda' %}">Kaduda fahm</a></li>
+    <li><a href="{% url 'Online' %}">Online fundraiser</a></li>
+    <li><a href="{% url 'Testimonials' %}">Testimonials</a></li>
+    <li><a href="{% url 'service_details' %}">Service details</a></li>
+  </ul>
+  <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+</nav>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section accent-background">
+
+      <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-5 justify-content-between">
+          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+            <h2><span>Hello folks welcome to  </span><span class="accent">Ubuntufund!</span></h2>
+            <p>An easy to  use fundraising and crowdfunding site created to help you bridge your financial struggles with friends easily in a more secure and accountable manner
+                .<br> Ease your fundraising struggles with us we've got you you covered.</p>
+            <div class="d-flex">
+              <a href="{% url 'About' %}" class="btn-get-started">Get Started</a>
+
+
+
+            </div>
+              <h2><em>I am who i am because of who we are.The ubuntu spirit</em></h2>
+          </div>
+          <div class="col-lg-5 order-1 order-lg-2">
+
+
+            <img src="{% static 'assets/img/hero-imgind119.png' %}" class="img-fluid" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="icon-boxes position-relative" data-aos="fade-up" data-aos-delay="200">
+        <div class="container position-relative">
+          <div class="row gy-4 mt-5">
+
+            <div class="col-xl-3 col-md-6">
+              <div class="icon-box">
+                <div class="icon"><img  src="{% static "assets/icon/transparency.png" %}" alt=""></div>
+
+                <h4 class="title"><a href="" class="stretched-link">Transparent</a></h4>
+              </div>
+            </div><!--End Icon Box -->
+
+            <div class="col-xl-3 col-md-6">
+              <div class="icon-box">
+                <div class="icon"><img  src="{% static "assets/icon/accountability.png" %}" alt=""></div>
+                <h4 class="title"><a href="" class="stretched-link">Accountable</a></h4>
+              </div>
+            </div><!--End Icon Box -->
+
+            <div class="col-xl-3 col-md-6">
+              <div class="icon-box">
+                 <div class="icon"><img  src="{% static "assets/icon/secure.png" %}" alt=""></div>
+                <h4 class="title"><a href="" class="stretched-link">Secure</a></h4>
+              </div>
+            </div><!--End Icon Box -->
+
+            <div class="col-xl-3 col-md-6">
+              <div class="icon-box">
+                <div class="icon"><img  src="{% static "assets/icon/Efficient.png" %}" alt=""></div>
+                <h4 class="title"><a href="" class="stretched-link">Effcient</a></h4>
+              </div>
+            </div><!--End Icon Box -->
+
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+
+
+    <!-- Clients Section -->
+    <section id="clients" class="clients section">
+
+      <div class="container">
+
+
+          <div class="container section-title" data-aos="fade-up">
+        <h2>Successful crowdfundings</h2>
+        <p>Happy clients</p>
+      </div>
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 40
+                },
+                "480": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 60
+                },
+                "640": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 80
+                },
+                "992": {
+                  "slidesPerView": 6,
+                  "spaceBetween": 120
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-1.png' %}" class="img-fluid" alt=""></div>
+<div class="swiper-slide"><img src="{% static 'assets/img/clients/client-2.png' %}" class="img-fluid" alt=""></div>
+<div class="swiper-slide"><img src="{% static 'assets/img/clients/client-3.png' %}" class="img-fluid" alt=""></div>
+<div class="swiper-slide"><img src="{% static 'assets/img/clients/client-4.png' %}" class="img-fluid" alt=""></div>
+<div class="swiper-slide"><img src="{% static 'assets/img/clients/client-5.png' %}" class="img-fluid" alt=""></div>
+<div class="swiper-slide"><img src="{% static 'assets/img/clients/client-6.png' %}" class="img-fluid" alt=""></div>
+<div class="swiper-slide"><img src="{% static 'assets/img/clients/client-7.png' %}" class="img-fluid" alt=""></div>
+<div class="swiper-slide"><img src="{% static 'assets/img/clients/client-8.png' %}" class="img-fluid" alt=""></div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Clients Section -->
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4 align-items-center">
+
+          <div class="col-lg-5">
+            <img src="{% static 'assets/img/stats-img.svg' %}" alt="" class="img-fluid">
+          </div>
+
+          <div class="col-lg-7">
+
+            <div class="row gy-4">
+
+              <div class="col-lg-6">
+                <div class="stats-item d-flex">
+                  <i class="bi bi-emoji-smile flex-shrink-0"></i>
+                  <div>
+                    <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="1" class="purecounter"></span>
+                    <p><strong>successful crowdfunds</strong> <span>Sattisfied clients</span></p>
+                  </div>
+                </div>
+              </div><!-- End Stats Item -->
+
+              <div class="col-lg-6">
+                <div class="stats-item d-flex">
+                  <i class="bi bi-journal-richtext flex-shrink-0"></i>
+                  <div>
+                    <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+                    <p><strong>Ongoing fundraisings</strong> <span>in progress fundraisings</span></p>
+                  </div>
+                </div>
+              </div><!-- End Stats Item -->
+
+              <div class="col-lg-6">
+                <div class="stats-item d-flex">
+                  <i class="bi bi-headset flex-shrink-0"></i>
+                  <div>
+                    <span data-purecounter-start="0" data-purecounter-end="1153" data-purecounter-duration="1" class="purecounter"></span>
+                    <p><strong>Hours Of Support</strong> <span>Our customer care teams are ready to help.</span></p>
+                  </div>
+                </div>
+              </div><!-- End Stats Item -->
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Stats Section -->
+
+         <nav>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </nav>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+      ### Ongeza carousel ###
+
+    <!-- Call To Action Section -->
+    <section id="call-to-action" class="call-to-action section dark-background">
+
+      <div class="container">
+        <img src="{% static 'assets/img/cta-bg.jpg' %}" alt="">
+        <div class="content row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-xl-10">
+            <div class="text-center">
+              <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox play-btn"></a>
+              <h3>Call To Action</h3>
+              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <a class="cta-btn" href="#">Call To Action</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Call To Action Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Our Services</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item  position-relative">
+              <div class="icon">
+                <i class="bi bi-activity"></i>
+              </div>
+              <h3>Nesciunt Mete</h3>
+              <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
+              <a href="service-details.html" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-broadcast"></i>
+              </div>
+              <h3>Eosle Commodi</h3>
+              <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
+              <a href="service-details.html" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-easel"></i>
+              </div>
+              <h3>Ledo Markt</h3>
+              <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
+              <a href="service-details.html" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-bounding-box-circles"></i>
+              </div>
+              <h3>Asperiores Commodit</h3>
+              <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
+              <a href="service-details.html" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-calendar4-week"></i>
+              </div>
+              <h3>Velit Doloremque</h3>
+              <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
+              <a href="service-details.html" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-chat-square-text"></i>
+              </div>
+              <h3>Dolori Architecto</h3>
+              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
+              <a href="service-details.html" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+
+
+
+
+
+
+
+
+
+
+  </main>
+
+  <footer id="footer" class="footer accent-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">Ubuntufund</span>
+          </a>
+
+          <p>A simple to use fundraising site that comes in handy to help you solve your contribution problems.It is a game changer in the crowdfunding sector  as it solves a variety of crowdfundings such as Funerals,weddings,Hospital bills,Mganda,Birthdays and any kind of crowdfundings.</p>
+                  <h4>Follow us</h4>
+          <div class="social-links d-flex mt-4" >
+
+         <div class="social-links d-flex mt-4">
+
+    <a href="https://x.com/LPhalez" class="twitter" target="_blank" rel="noopener noreferrer"><i class="bi bi-twitter-x"></i></a>
+    <a href="https://www.facebook.com/rodrygo.luiz.3" class="facebook" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook"></i></a>
+    <a href="https://www.instagram.com/holla_hit" class="instagram" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i></a>
+    <a href="https://www.linkedin.com/in/lewis-onyango-9202b5295" class="linkedin" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
+</div>
+</div>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <li><a href="{% url 'index' %}"  >Home</a></li>
+    <li><a href="{% url 'About' %}"  >About</a></li>
+    <li><a href="{% url 'contacts' %} " >Contacts</a></li>
+    <li><a href="{% url 'FAQS' %}" class="active">FAQS</a></li>
+    <li><a href="{% url 'Team' %}">Our team</a></li>
+    <li><a href="{% url 'blog' %}">Blog</a></li>
+    <li><a href="{% url 'Kaduda' %}" class="active">Kaduda fahm</a></li>
+    <li><a href="{% url 'Online' %}">Online fundraiser</a></li>
+    <li><a href="{% url 'Testimonials' %}">Testimonials</a></li>
+    <li><a href="{% url 'service_details' %}">Service details</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p> Kapengria-Lodwar Next to paves towers</p>
+          <p>Kapenguria,30600</p>
+          <p>Kenya</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+254791432648</span></p>
+          <p><strong>Email:</strong> <span>lwsopiyo@gmail.com</span></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Ubuntufund</strong> <span>All Rights Reserved</span></p>
+
+    </div>
+
+  </footer>
+<!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+
+
+  <!-- Vendor JS Files -->
+   <script src="{% static 'assets/bootstrap/js/bootstrap.bundle.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+   <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script ></script>
+      <script ="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>
