@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from .models import Register
+from django.contrib.auth.forms import AuthenticationForm
 
 
 
@@ -17,11 +18,13 @@ def register_view(request):
             login(request, user)
             messages.success(request, 'Registration successful!')
             return redirect('create_fundraiser')  # Redirect to fundraisers creation
-    else:
-        form = UserCreationForm()
+        else:
+            form = UserCreationForm()
     return render(request, 'accounts/register.html', {'form': form})
 
 def login_view(request):
+    form = AuthenticationForm(request.POST or None)
+'''
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -29,10 +32,27 @@ def login_view(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'Login successful!')
-            return redirect('create_fundraiser')
+            return redirect('create_fundraiser_basic')
         else:
             messages.error(request, 'Invalid username or password')
     return render(request, 'accounts/login.html')
+'''
+
+def login_view(request):
+    form = AuthenticationForm(request, data=request.POST or None)
+
+    if request.method == 'POST' and form.is_valid():
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'Login successful!')
+            return redirect('FundraisersBasicDetailsForm')  # Redirect to the desired path
+        else:
+            messages.error(request, 'Invalid username or password')
+    return render(request, 'accounts/login.html', {'form': form})
+
 
 def logout_view(request):
     logout(request)
@@ -42,13 +62,11 @@ def logout_view(request):
 
 
 
-
-
 def index(request):
     if request.method == 'POST':
         if register().objects.filter(
-            username=request.POST['username'],
-            password=request.POST['password'],
+            username=request.get['username'],
+            password=request.get['password'],
         ).exists():
             return render(request, 'index.html')
         else:
@@ -70,3 +88,9 @@ def register(request):
         return redirect('/accounts/login')
     else:
         return render(request, 'register.html')
+    
+
+
+
+
+    

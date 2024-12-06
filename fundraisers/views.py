@@ -2,34 +2,38 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from decimal import Decimal
+from .forms import FundraisersBasicDetailsForm, FundraisersPersonalDetailsForm
 
 from .models import Fundraiser
 
 @login_required
 def create_fundraiser_basic(request):
     if request.method == 'POST':
-        form = FundraiserBasicDetailsForm(request.POST)
+        form = FundraisersBasicDetailsForm(request.POST)
         if form.is_valid():
             # Convert Decimal to float for session storage
-            basic_details = form.cleaned_data.copy()
+            basic_details = form.cleaned_data#.copy()
             basic_details['goal_amount'] = float(basic_details['goal_amount'])
 
             # Store basic details in session
             request.session['fundraiser_basic_details'] = basic_details
-            return redirect('create_fundraiser_personal')
+            return render(request, 'create_fundraiser_personal.html')
+        else:
+            form = FundraisersBasicDetailsForm()
     else:
-        form = FundraiserBasicDetailsForm()
+        form = FundraisersBasicDetailsForm()
 
-    return render(request, 'fundraisers/create_fundraiser_basic.html', {'form': form})
+   # return render(request, 'fundraisers/create_fundraiser_basic.html', {'form': form})
 
 @login_required
 def create_fundraiser_personal(request):
-    if 'fundraiser_basic_details' not in request.session:
+    if FundraisersBasicDetailsForm not in request.session:
         messages.warning(request, 'Please complete the basic details first.')
         return redirect('create_fundraiser_basic')
+    
 
     if request.method == 'POST':
-        form = FundraiserPersonalDetailsForm(request.POST)
+        form = FundraisersPersonalDetailsForm(request.POST)
         if form.is_valid():
             # Retrieve basic details from session
             basic_details = request.session.get('fundraiser_basic_details')
@@ -55,8 +59,8 @@ def create_fundraiser_personal(request):
 
             # Redirect to success page
             return redirect('fundraisers:submit_details')
-    else:
-        form = FundraiserPersonalDetailsForm()
+   # else:
+  #      form = FundraiserPersonalDetailsForm()
 
     return render(request, 'fundraisers/create_fundraiser_personal.html', {'form': form})
 

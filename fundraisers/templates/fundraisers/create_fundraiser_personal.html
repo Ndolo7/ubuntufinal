@@ -40,10 +40,11 @@
             background-color: #218838;
         }
     </style>
+    <title>Personal Details</title>
 </head>
 <body>
- <h2>Personal Details Form</h2>
-    <form  method="POST">
+ <!-- <h2>Personal Details Form</h2>
+    <form name="fundraiser_personal"  method="POST">
         {% csrf_token %}
         <label for="fullname">Full Name</label>
         <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required="">
@@ -55,6 +56,12 @@
         <input type="number" id="year_of_birth" name="year_of_birth" placeholder="Enter your year of birth" required="">
 
         <button type="submit">Submit Details</button>
+    -->
+    <div class="container">
+        <h2>Create Fundraiser - Personal Details</h2>
+        <form method="post" action="FundraisersPersonalDetailsForm">
+            {% csrf_token %}
+            {{ form.as_p }}
 
 </body>
 </html>
