@@ -9,13 +9,7 @@ class FundraisersBasicDetailsForm(forms.ModelForm):
         widgets = {
             'description': forms.Textarea(attrs={'rows': 4}),
         }
-    def is_valid(self):
-        # Use self.data instead of self.get()
-        if self.data.get('goal_amount'):
-            # Convert Decimal to float for session storage
-            self.data['goal_amount'] = float(self.data['goal_amount'])
-        return super().is_valid()
-
+    
 
 class FundraisersPersonalDetailsForm(forms.ModelForm):
     class Meta:
@@ -26,9 +20,4 @@ class FundraisersPersonalDetailsForm(forms.ModelForm):
             'email': forms.TextInput(attrs={'placeholder': 'johndoe@example.com'}),
             'phone_number': forms.NumberInput(attrs={'min': 10}),
         }
-        def is_valid(self):
-        # Use self.data instead of self.get()
-             if self.data.get('goal_amount'):
-            # Convert Decimal to float for session storage
-                 self.data['goal_amount'] = float(self.data['goal_amount'])
-             return super().is_valid()
+        

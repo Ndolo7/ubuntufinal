@@ -10,13 +10,10 @@
 <body>
 <div class="container">
     <h2>Create Fundraiser - Personal Details</h2>
-    <form method="post" action="{% url 'FundraisersBasicDetailsForm' %}"></form>>
+    <form method="post" action="{% url 'create/basic' %}">
         {% csrf_token %}
         {{ form.as_p }}
-
-
-
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <input type="submit" value="Submit">
     </form>
 </div>
 

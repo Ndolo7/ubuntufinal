@@ -6,30 +6,38 @@ from .forms import FundraisersBasicDetailsForm, FundraisersPersonalDetailsForm
 
 from .models import Fundraiser
 
-@login_required
+#@login_required
+def fundraiser_basic(request):
+    return render(request, 'create_fundraiser_basic.html', {'form': FundraisersBasicDetailsForm})
+
+
 def create_fundraiser_basic(request):
     if request.method == 'POST':
         form = FundraisersBasicDetailsForm(request.POST)
         if form.is_valid():
             # Convert Decimal to float for session storage
-            basic_details = form.cleaned_data#.copy()
+            basic_details = form.cleaned_data
             basic_details['goal_amount'] = float(basic_details['goal_amount'])
 
             # Store basic details in session
             request.session['fundraiser_basic_details'] = basic_details
-            return render(request, 'create_fundraiser_personal.html')
+            messages.success(request, "Basic details submitted successfully!")
+
+            # Redirect to the next step
+            return redirect('create/personal')  # Replace with your actual URL name
         else:
-            form = FundraisersBasicDetailsForm()
+            messages.error(request, "Please correct the errors below.")
     else:
         form = FundraisersBasicDetailsForm()
 
-   # return render(request, 'fundraisers/create_fundraiser_basic.html', {'form': form})
+    return render(request, 'create_fundraiser_basic.html', {'form': form})
 
-@login_required
+
+
 def create_fundraiser_personal(request):
-    if FundraisersBasicDetailsForm not in request.session:
-        messages.warning(request, 'Please complete the basic details first.')
-        return redirect('create_fundraiser_basic')
+   # if FundraisersBasicDetailsForm not in request.session:
+   #     messages.warning(request, 'Please complete the basic details first.')
+   #     return redirect('create/personal')
     
 
     if request.method == 'POST':
@@ -59,12 +67,12 @@ def create_fundraiser_personal(request):
 
             # Redirect to success page
             return redirect('fundraisers:submit_details')
-   # else:
-  #      form = FundraiserPersonalDetailsForm()
+    else:
+        form = FundraisersPersonalDetailsForm()
 
-    return render(request, 'fundraisers/create_fundraiser_personal.html', {'form': form})
+    return render(request, 'fundraisers/create_fundraiser_personal.html', {'form': FundraisersPersonalDetailsForm})
 
-@login_required
+
 def activate_fundraiser(request, fundraiser_id):
     try:
         fundraiser = Fundraiser.objects.get(id=fundraiser_id, user=request.user)

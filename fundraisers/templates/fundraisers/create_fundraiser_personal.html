@@ -59,9 +59,13 @@
     -->
     <div class="container">
         <h2>Create Fundraiser - Personal Details</h2>
-        <form method="post" action="FundraisersPersonalDetailsForm">
+        <form method="post" action="{% url 'activate_fundraiser' %}">
             {% csrf_token %}
             {{ form.as_p }}
+            <input type="submit" value="Submit">
+        
+        </form>
+    </div>
 
 </body>
 </html>
