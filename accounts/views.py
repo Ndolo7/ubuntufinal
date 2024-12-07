@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from .models import Register
-from django.contrib.auth.forms import AuthenticationForm
 from fundraisers.forms import FundraisersBasicDetailsForm, FundraisersPersonalDetailsForm
 
 
@@ -19,42 +18,22 @@ def register_view(request):
             # Log the user in after registration
             login(request, user)
             messages.success(request, 'Registration successful!')
-            return redirect('create_fundraiser')  # Redirect to fundraisers creation
-        else:
-            form = UserCreationForm()
-    return render(request, 'accounts/register.html', {'form': form})
-'''
-def login_view(request):
-    form = AuthenticationForm(request.POST or None)
-
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            messages.success(request, 'Login successful!')
-            return redirect('create_fundraiser_basic')
-        else:
-            messages.error(request, 'Invalid username or password')
-    return render(request, 'accounts/login.html')
-'''
-def login_view(request):
-    if request.method == 'POST':
-        form = FundraisersBasicDetailsForm(data=request.POST)
-        if form.is_valid():
-            login(request, user)
-        return redirect('create/basic')
-
-    
-
-
+            return redirect('create/basic')  # Redirect to fundraisers creation
     else:
-        form = AuthenticationForm  
-        return render(request, 'accounts/login.html', {'form': form}) 
+        form = UserCreationForm()
+    return render(request, 'accounts/register.html', {'form': form})
 
 
-
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('create/basic')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
 
 def logout_view(request):
     logout(request)
@@ -77,19 +56,7 @@ def index(request):
         return render(request, 'login.html')
 
 
-def register(request):
-    if request.method == 'POST':
 
-        # Create an instance of the Register model
-        new_register = Register(
-            name=request.POST['name'],
-            username=request.POST['username'],
-            password=request.POST['password']
-        )
-        new_register.save()
-        return redirect('/accounts/login')
-    else:
-        return render(request, 'register.html')
     
 
 

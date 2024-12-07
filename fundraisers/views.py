@@ -3,13 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from decimal import Decimal
 from .forms import FundraisersBasicDetailsForm, FundraisersPersonalDetailsForm
-
+from django.contrib.auth.forms import AuthenticationForm
 from .models import Fundraiser
 
 #@login_required
-def fundraiser_basic(request):
-    return render(request, 'create_fundraiser_basic.html', {'form': FundraisersBasicDetailsForm})
-
 
 def create_fundraiser_basic(request):
     if request.method == 'POST':
@@ -35,63 +32,68 @@ def create_fundraiser_basic(request):
 
 
 def create_fundraiser_personal(request):
-   # if FundraisersBasicDetailsForm not in request.session:
-   #     messages.warning(request, 'Please complete the basic details first.')
-   #     return redirect('create/personal')
-    
+    # Add print statements or logging to help debug
+    form = FundraisersPersonalDetailsForm()
 
     if request.method == 'POST':
+        # Check if basic details are in session
+        basic_details = request.session.get('fundraiser_basic_details')
+        print("Basic details from session:", basic_details)
+        
+        if not basic_details:
+            messages.warning(request, 'Please complete the basic details first.')
+            return redirect('create/basic')  # Redirect to basic details page
+            
+        # Process personal details form
         form = FundraisersPersonalDetailsForm(request.POST)
-        if form.is_valid():
-            # Retrieve basic details from session
-            basic_details = request.session.get('fundraiser_basic_details')
+        
+        # Add form validation debugging
+        if not form.is_valid():
+            print("Form errors:", form.errors)
+            return render(request, 'create_fundraiser_personal.html', {'form': form})
+            
 
-            # Create fundraiser
-            fundraiser = form.save(commit=False)
-            fundraiser.user = request.user
-            fundraiser.title = basic_details['title']
-            fundraiser.description = basic_details['description']
+        if form.is_valid() and request.user.is_authenticated:
+           
+            
+            try:
+                # Create fundraiser
+                fundraiser = form.save(commit=False)
+                fundraiser.user = request.user
+                
+                # Set basic details from session
+                fundraiser.title = basic_details['title']
+                fundraiser.description = basic_details['description']
+                fundraiser.goal_amount = Decimal(str(basic_details['goal_amount']))
+                fundraiser.category = basic_details['category']
+                
+                # Set initial status
+                fundraiser.is_active = False
 
-            # Convert back to Decimal
-            fundraiser.goal_amount = Decimal(str(basic_details['goal_amount']))
-            fundraiser.category = basic_details['category']
-            fundraiser.is_active = False  # Default to inactive
+                # Save fundraiser
+                fundraiser.save()
 
-            fundraiser.save()
+                # Clear session data
+                del request.session['fundraiser_basic_details']
 
-            # Clear session data
-            del request.session['fundraiser_basic_details']
+                # Activate fundraiser
+                fundraiser.is_active = True
+                fundraiser.save()
 
-            # Add success message
-            messages.success(request, 'Fundraiser created and pending approval.')
-
-            # Redirect to success page
-            return redirect('fundraisers:submit_details')
-    else:
-        form = FundraisersPersonalDetailsForm()
-
-    return render(request, 'fundraisers/create_fundraiser_personal.html', {'form': FundraisersPersonalDetailsForm})
-
-
-def activate_fundraiser(request, fundraiser_id):
-    try:
-        fundraiser = Fundraiser.objects.get(id=fundraiser_id, user=request.user)
-
-        # Only allow activation if the fundraiser is not already active
-        if not fundraiser.is_active:
-            # TODO: Add additional checks like email verification, admin review, etc.
-            fundraiser.is_active = True
-            fundraiser.save()
-            messages.success(request, 'Fundraiser has been activated.')
+                messages.success(request, 'Fundraiser created and activated successfully.')
+                return redirect('submit_details')  # Ensure this matches your URL name exactly
+            
+            except Exception as e:
+                print(f"Exception during fundraiser creation: {e}")
+                messages.error(request, f'An error occurred: {str(e)}')
+                form = FundraisersPersonalDetailsForm()
+                return render(request, 'create_fundraiser_personal.html', {'form': form})
+    
         else:
-            messages.info(request, 'Fundraiser is already active.')
+        # GET request - show personal details form
+            form = FundraisersPersonalDetailsForm()
+    return render(request, 'create_fundraiser_personal.html', {'form': form})
 
-        return redirect('fundraiser_list')
-    except Fundraiser.DoesNotExist:
-        messages.error(request, 'Fundraiser not found.')
-        return redirect('fundraiser_list')
-
-@login_required
 def fundraiser_success(request):
     # Retrieve the most recently created fundraiser for the current user
     latest_fundraiser = Fundraiser.objects.filter(user=request.user).order_by('-created_at').first()

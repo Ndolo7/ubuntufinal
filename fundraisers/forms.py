@@ -12,6 +12,7 @@ class FundraisersBasicDetailsForm(forms.ModelForm):
     
 
 class FundraisersPersonalDetailsForm(forms.ModelForm):
+    
     class Meta:
         model = Fundraiser
         fields = ['full_name', 'email', 'phone_number']

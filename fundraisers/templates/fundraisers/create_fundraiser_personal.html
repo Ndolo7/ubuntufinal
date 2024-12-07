@@ -30,13 +30,13 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        button {
+        .submit_button {
             background-color: #28a745;
             color: white;
             font-size: 16px;
             cursor: pointer;
         }
-        button:hover {
+        .submit_button:hover {
             background-color: #218838;
         }
     </style>
@@ -59,10 +59,12 @@
     -->
     <div class="container">
         <h2>Create Fundraiser - Personal Details</h2>
-        <form method="post" action="{% url 'activate_fundraiser' %}">
+        <form method="post" action="{% url 'create/personal' %}">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Submit">
+
+            <input type="submit" value="Submit" class="submit_button">
+            
         
         </form>
     </div>

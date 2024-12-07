@@ -10,19 +10,12 @@
 <body>
 <div class="container">
     <h2>Login</h2>
-    <form method="post" action="{% url 'basic/details' %}">
+    <form class="site-form" method="post" action="{% url 'login' %}">
+        
         {% csrf_token %}
-        <div class="form-group">
-            <label for="id_username">Username:</label>
-            {{ form.username }}
-        </div>
-
-        <div class="form-group">
-            <label for="id_password">Password:</label>
-            {{ form.password }}
-        </div>
-
-        <button type="submit" class="btn btn-primary">Login</button>
+        {{ form.as_p }}
+        
+        <input type="submit" value="Login">
     </form>
     <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
 
